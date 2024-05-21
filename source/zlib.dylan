@@ -1,4 +1,4 @@
-module: zlib
+module: zlib-impl
 
 define C-function zlib-compress
   parameter destination :: <C-string>;
