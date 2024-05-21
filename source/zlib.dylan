@@ -26,7 +26,3 @@ define function compress (string :: <string>)
     result;
   end if;
 end;
-/*
-define variable foobar = "foobar";
-format-out("%= => %=\n", foobar, compress(foobar));
-*/
