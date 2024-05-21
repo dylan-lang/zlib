@@ -1,0 +1,11 @@
+# Development directories
+
+/_build/
+/_packages/
+/registry/
+
+# Backup files
+
+*~
+
+/documentation/build/
