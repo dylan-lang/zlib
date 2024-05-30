@@ -7,7 +7,7 @@ Reference
 Utility functions
 -----------------
 
-This functions are implemented on top of the basic zlib
+These functions are implemented on top of the basic zlib
 stream-oriented functions. To simplify the interface, some default
 options are assumed (compression level and memory usage).
 
