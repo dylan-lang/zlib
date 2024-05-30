@@ -1,0 +1,15 @@
+{
+    "dependencies": [  ],
+    "dev-dependencies": [
+	"testworks",
+	"sphinx-extensions"
+    ],
+    "description": "Bindings to Zlib library",
+    "name": "zlib",
+    "version": "0.1.0",
+    "url": "https://github.com/dylan-lang/zlib",
+    "keywords": [ "zlib", "binding" ],
+    "contact": "dylan-lang@google.com",
+    "license": "MIT",
+    "license-url": "https://opensource.org/license/mit"
+}
