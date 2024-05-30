@@ -1,4 +1,4 @@
 Library: zlib-test-suite
-Files: library.dylan
+Files: library
        zlib-test-suite
 Target-Type: executable
