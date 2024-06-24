@@ -35,3 +35,12 @@ define C-function z-uncompress
   result return-code :: <C-int>;
   c-name: "uncompress"
 end;
+
+define C-function z-uncompress-2
+  parameter destination :: <C-string>;
+  parameter destination-length :: <C-unsigned-long*>;
+  parameter source :: <C-string>;
+  parameter source-length :: <C-unsigned-long*>;
+  result return-code :: <C-int>;
+  c-name: "uncompress2"
+end;

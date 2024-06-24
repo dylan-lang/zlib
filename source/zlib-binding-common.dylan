@@ -50,5 +50,4 @@ define constant $z-deflated = 8;
 
 // For initializing zalloc, zfree, opaque.
 
-//define constant $z-null = 0;
 define constant $z-null = null-pointer(<C-function-pointer>);

@@ -83,6 +83,12 @@ end module;
 
 define module zlib
   create
+    $z-no-compression,
+    $z-best-speed,
+    $z-best-compression,
+    $z-default-compression;
+  
+  create
     <zlib-error>,
     <zlib-errno-error>,
     <zlib-stream-error>,
