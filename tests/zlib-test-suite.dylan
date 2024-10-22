@@ -13,7 +13,7 @@ define test compress-uncompress-idempotence-test ()
   let phrase       = "A horse, a horse, my kingdom for a horse";
   let compressed   = zlib-compress(phrase);
   let uncompressed = zlib-uncompress(compressed, phrase.size);
-  assert-equal(phrase, uncompressed)
+  assert-equal(phrase, as(<string>, uncompressed))
 end test;
 
 define test compression-level-test ()

@@ -78,16 +78,11 @@ define module zlib-binding
     z-compress,
     z-compress-2,
     z-compress-bound,
-    z-uncompress;
+    z-uncompress,
+    z-uncompress-2;
 end module;
 
 define module zlib
-  create
-    $z-no-compression,
-    $z-best-speed,
-    $z-best-compression,
-    $z-default-compression;
-  
   create
     <zlib-error>,
     <zlib-errno-error>,
@@ -105,6 +100,7 @@ end module;
 define module zlib-impl
   use common-dylan;
   use c-ffi;
+  use byte-vector;
   use zlib;
   use zlib-binding;
 

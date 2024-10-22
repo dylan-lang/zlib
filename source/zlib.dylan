@@ -34,43 +34,39 @@ define function zlib-abort
 end zlib-abort;
 
 define function zlib-compress
-    (string :: <string>, #key level :: <integer> = 6)
- => (compressed :: <string>)
-  let string-size    = string.size;
-  let estimated-size = z-compress-bound(string-size);
-  let compressed     = make(<string>, size: estimated-size);
-  let actual-size    = make(<C-unsigned-long*>);
+    (data, #key level :: <integer> = $z-default-compression)
+ => (compressed :: <byte-vector>)
+  let estimated-size = z-compress-bound(data.size);
+  let buffer = make(<byte-vector>, size: estimated-size);
+  let actual-size = make(<C-unsigned-long*>);
   actual-size.pointer-value := estimated-size;
+  let destination = byte-storage-address(buffer);
+  let source = byte-storage-address(data);
 
-  let status-code = z-compress-2(compressed,
-				 actual-size,
-				 string,
-				 string-size,
-				 level);
-
-  unless (status-code = $z-ok)
-    zlib-abort(status-code)
+  let status = z-compress-2(destination, actual-size, source, data.size, level);
+  unless (status = $z-ok)
+    zlib-abort(status)
   end;
 
-  copy-sequence(compressed, end: actual-size.pointer-value);
+  let compressed-size = actual-size.pointer-value;
+  let compressed = make(<byte-vector>, size: compressed-size);
+  copy-bytes(compressed, 0, buffer, 0, compressed-size);
+  compressed
 end zlib-compress;
 
 define function zlib-uncompress
-    (compressed :: <string>, length :: <integer>)
- => (string :: <string>)
-  // allocate uncompressed string of expected 'length'
-  let string      = make(<string>, size: length);
-  let string-size = make(<C-unsigned-long*>);
-  string-size.pointer-value := length;
+    (compressed :: <byte-vector>, length :: <integer>)
+ => (uncompressed :: <byte-vector>)
+  let uncompressed = make(<byte-vector>, size: length);
+  let uncompressed-size = make(<C-unsigned-long*>);
+  uncompressed-size.pointer-value := length;
+  let destination = byte-storage-address(uncompressed);
+  let source = byte-storage-address(compressed);
 
-  let status-code = z-uncompress(string,
-				 string-size,
-				 compressed,
-				 compressed.size);
-
-  unless (status-code = $z-ok)
-    zlib-abort(status-code)
+  let status = z-uncompress(destination, uncompressed-size, source, compressed.size);
+  unless (status = $z-ok)
+    zlib-abort(status)
   end;
 
-  string
+  uncompressed
 end zlib-uncompress;
