@@ -1,7 +1,7 @@
 zlib-binding
 ============
 
-This module binds the functions of the zlib library.
+This module creates Dylan bindings that directly reflect the zlib C library.
 
 
 .. current-library:: zlib
@@ -41,8 +41,8 @@ Flush values
 
    :type: :drm:`<integer>`
 
-Return codes for the compression/decompression
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Return codes for (de)compression
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Positive values are used for special but normal events:
 
@@ -52,7 +52,7 @@ Positive values are used for special but normal events:
 
 .. constant:: $z-ok
 
-   Returned if the operation was a success.
+   The operation was a success.
 
    :type: :drm:`<integer>`
 
@@ -65,7 +65,7 @@ Positive values are used for special but normal events:
 
 .. constant:: $z-need-dict
 
-   If a preset dictionary is needed.
+   A preset dictionary is needed.
 
    :type: :drm:`<integer>`
 
@@ -84,7 +84,7 @@ Negative values are errors:
 
 .. constant:: $z-stream-error
 
-   Returned if the compression level is not valid.
+   The compression level is not valid.
 
    :type: :drm:`<integer>`
 
@@ -94,20 +94,20 @@ Negative values are errors:
 
 .. constant:: $z-mem-error
 
-   Returned if there was not enough memory.
+   There was not enough memory.
 
    :type: :drm:`<integer>`
 
 .. constant:: $z-buf-error
 
-   If no progress was possible or if there was not enough room in the
-   output buffer when ``$z-finish`` is used.
+   No progress was possible or there was not enough room in the
+   output buffer when ``$z-finish`` was used.
 
    :type: :drm:`<integer>`
 
 .. constant:: $z-version-error
 
-   Returned if the z library version is incompatible with the version
+   The z library version is incompatible with the version
    assumed by the caller.
 
    :type: :drm:`<integer>`
@@ -119,12 +119,12 @@ Compression levels
 
 The compression levels are a number between 0 and 9. 1 gives best
 speed, 9 gives best compression, 0 gives no compression at all (all
-the input is simply copied a block a time).
+the input is simply copied a block at a time).
 
 .. constant:: $z-no-compression
 
    Uses no compression at all (all the input is simply copied a block
-   a time).
+   at a time).
 
    :type: :drm:`<integer>`
 
@@ -142,7 +142,7 @@ the input is simply copied a block a time).
 
 .. constant:: $z-default-compression
 
-   Requests a default compromise between speed and compression
+   A compromise between speed and compression
    (currently equivalent to level 6).
 
    :type: :drm:`<integer>`
@@ -183,7 +183,7 @@ Deflate data-type field values
 
 .. constant:: $z-ascii
 
-   Default to ``$z-text`` for compatibility with 1.2.2 and
+   Default to :const:`$z-text`_ for compatibility with 1.2.2 and
    earlier.
 
    :type: :drm:`<integer>`
@@ -197,8 +197,8 @@ Others
 
 .. constant:: $z-deflated
 
-   The deflate compression method (the only supported in this
-   version).
+   The deflate compression method (the only one supported in 
+   this version).
 
    :type: :drm:`<integer>`
 
@@ -227,14 +227,14 @@ options are assumed (compression level and memory usage).
    :parameter destination:
 
       Destination buffer of the compressed string.
-      An instance of :class:`<C-string>`
+      An instance of :class:`<C-buffer-offset>`
 
    :parameter destination-length:
 
       Byte length of the destination buffer, which must be at least
       the value returned by :func:`z-compress-bound`. At exit it
       contains the actual size of compressed data. An instance of
-      :drm:`<integer>`
+      :class:`<C-unsigned-long*>`
 
    :parameter source:
 
@@ -271,7 +271,7 @@ options are assumed (compression level and memory usage).
    :parameter destination:
 
       Destination buffer of the compressed string.
-      An instance of :class:`<C-string>`
+      An instance of :class:`<C-buffer-offset>`
 
    :parameter destination-length:
 
