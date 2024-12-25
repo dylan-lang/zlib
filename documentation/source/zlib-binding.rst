@@ -183,7 +183,7 @@ Deflate data-type field values
 
 .. constant:: $z-ascii
 
-   Default to :const:`$z-text`_ for compatibility with 1.2.2 and
+   Default to :const:`$z-text` for compatibility with 1.2.2 and
    earlier.
 
    :type: :drm:`<integer>`
