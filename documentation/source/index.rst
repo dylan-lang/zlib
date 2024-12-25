@@ -20,10 +20,3 @@ The library is structured in two layers of modules:
 
    zlib
    zlib-binding
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
