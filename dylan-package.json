@@ -6,7 +6,7 @@
     ],
     "description": "Bindings to Zlib library",
     "name": "zlib",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "url": "https://github.com/dylan-lang/zlib",
     "keywords": [ "zlib", "binding" ],
     "contact": "dylan-lang@google.com",
